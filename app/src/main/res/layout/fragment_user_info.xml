@@ -7,7 +7,7 @@
     android:padding="24dp"
     >
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/userInfoNameEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -15,6 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        style="@style/FirebaseUI.TextInputEditText.NameField"
         android:hint="@string/name"
         />
 
