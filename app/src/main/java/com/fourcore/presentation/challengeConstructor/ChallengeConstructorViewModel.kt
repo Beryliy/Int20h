@@ -5,11 +5,14 @@ import com.fourcore.data.repository.ChallengeRepository
 import com.fourcore.domain.Challenge
 import com.fourcore.domain.User
 import com.fourcore.presentation.BaseViewModel
+import java.util.*
 
 class ChallengeConstructorViewModel(
     val challengeRepository: ChallengeRepository
 ): BaseViewModel() {
     val challengeNotValidEvent = SingleLiveEvent<String>()
+
+    var deadline: Date? = null
     fun createChallenge(
         presentationChallenge: PresentationChallenge,
         currentUser: User
