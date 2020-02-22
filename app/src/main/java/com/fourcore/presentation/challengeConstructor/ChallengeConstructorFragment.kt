@@ -1,16 +1,20 @@
 package com.fourcore.presentation.challengeConstructor
 
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.DatePicker
 import androidx.lifecycle.Observer
 import com.fourcore.NavFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 import com.fourcore.R
+import com.fourcore.domain.User
 import com.fourcore.global.util.showShortToast
 import kotlinx.android.synthetic.main.fragment_challenge_constructor.*
 import java.util.*
@@ -27,18 +31,64 @@ class ChallengeConstructorFragment : NavFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         createChallengeB.setOnClickListener{
-            viewModel.createChallenge(
-                PresentationChallenge(
-                    challengeNameEt.text.toString(),
-                    challengeDescriptionEt.text.toString(),
-                    deadline
-                )
-                )
+            viewModel.presentationChallenge = PresentationChallenge(
+                challengeNameEt.text.toString(),
+                challengeDescriptionEt.text.toString()
+            )
+            viewModel.createChallenge()
         }
+        viewModel.initContacts()
         viewModel.challengeNotValidEvent.observe(viewLifecycleOwner, Observer {
             showShortToast(context!!, it)
         })
+        viewModel.contactsInitedEvent.observe(viewLifecycleOwner, Observer {
+            ContactsArrayAdapter(context!!, it)
+                .also {
+                    it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    receiverSp.adapter = it
+                }
+        })
+        receiverSp.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                viewModel.challengeReceiver = parent!!.getItemAtPosition(position) as User
+            }
+        })
+        deadlineB.setOnClickListener{
+            showDatePickerDialog()
+        }
     }
 
+    private fun showDatePickerDialog() {
+            DatePickerDialog(
+                context!!,
+                object: DatePickerDialog.OnDateSetListener{
+                    override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+                        viewModel.changeDeadlineDate(year, month, dayOfMonth)
+                        showTimepickerDialog()
+                    }
+                },
+                viewModel.deadlineCalendar.get(Calendar.YEAR),
+                viewModel.deadlineCalendar.get(Calendar.MONTH),
+                viewModel.deadlineCalendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
+    }
 
+    private fun showTimepickerDialog(){
+            TimePickerDialog(
+                context!!,
+                TimePickerDialog.OnTimeSetListener{ view, hourOfDay, minute ->
+                    viewModel.changeDeadlineTime(hourOfDay, minute)
+                },
+                viewModel.deadlineCalendar.get(Calendar.HOUR_OF_DAY),
+                viewModel.deadlineCalendar.get(Calendar.MINUTE),
+                true
+            ).show()
+    }
 }

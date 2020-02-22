@@ -10,4 +10,7 @@
 
     <dimen name="width_create_new_challenge_b">64dp</dimen>
     <dimen name="height_create_new_challenge_b">64dp</dimen>
+
+    <!--challenges list-->
+    <dimen name="height_date_time_picker_b">36dp</dimen>
 </resources>

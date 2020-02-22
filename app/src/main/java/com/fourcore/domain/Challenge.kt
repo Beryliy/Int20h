@@ -6,8 +6,8 @@ class Challenge {
     lateinit var owner: User
     lateinit var participant: User
     lateinit var name: String
-    lateinit var description: String
-    lateinit var deadline: Date
+    var description: String? = null
+    lateinit var deadline: Calendar
     var creationAward: Int = 1
     var completeAward: Int = 4
     var fine: Int = 1
@@ -17,8 +17,8 @@ class Challenge {
         owner: User,
         participant: User,
         name: String,
-        description: String,
-        deadline: Date,
+        description: String?,
+        deadline: Calendar,
         creationAward: Int,
         completeAward: Int,
         fine: Int,

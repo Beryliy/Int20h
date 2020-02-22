@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.challengeConstructor.ChallengeConstructorFragment">
-    
+
     <EditText
         android:layout_width="@dimen/size_scalable"
         android:layout_height="@dimen/height_challenge_name_et"
@@ -24,14 +25,43 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="challengeDescription bla bla"/>
 
+
     <Button
-        android:layout_width="@dimen/size_scalable"
-        android:layout_height="@dimen/height_date_time_picher_b"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_date_time_picker_b"
         android:id="@+id/deadlineB"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/challengeDescriptionEt"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/deadlineTv"
         tools:text="chose deadline"/>
+
+    <TextView
+        android:layout_width="@dimen/size_scalable"
+        android:layout_height="wrap_content"
+        android:id="@+id/deadlineTv"
+        app:layout_constraintStart_toEndOf="@id/deadlineB"
+        app:layout_constraintTop_toBottomOf="@id/challengeDescriptionEt"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="23.12.2020 19:43"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/receiverHintTv"
+        android:text="@string/receiver"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/deadlineB"
+        app:layout_constraintEnd_toStartOf="@id/receiverSp"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+    <Spinner
+        android:layout_width="@dimen/size_scalable"
+        android:layout_height="wrap_content"
+        android:id="@+id/receiverSp"
+        app:layout_constraintStart_toEndOf="@id/receiverHintTv"
+        app:layout_constraintTop_toBottomOf="@id/deadlineB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
 
     <Button
         android:layout_width="@dimen/size_scalable"
