@@ -7,4 +7,7 @@
     <dimen name="height_challenge_description_et">40dp</dimen>
     <dimen name="height_date_time_picher_b">40dp</dimen>
     <dimen name="height_create_challenge_b">40dp</dimen>
+
+    <dimen name="width_create_new_challenge_b">64dp</dimen>
+    <dimen name="height_create_new_challenge_b">64dp</dimen>
 </resources>

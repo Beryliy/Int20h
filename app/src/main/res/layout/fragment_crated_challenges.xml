@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.createdChallengesLibrary.CratedChallengesFragment">
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="@dimen/size_scalable"
+        android:layout_height="@dimen/size_scalable"
+        android:id="@+id/createdChallengesRv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+    
+    <ImageButton
+        android:layout_width="@dimen/width_create_new_challenge_b"
+        android:layout_height="@dimen/height_create_new_challenge_b"
+        android:id="@+id/createNewChallengeB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    
+</androidx.constraintlayout.widget.ConstraintLayout>

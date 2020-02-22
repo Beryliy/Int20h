@@ -3,4 +3,7 @@
     <string name="phone_error">Enter valid phone number</string>
     <string name="register_fail">Register fail</string>
     <string name="name">Name:</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
