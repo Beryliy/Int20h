@@ -25,6 +25,8 @@ buildscript {
             def koin_version = '2.0.1'
             def firebase_auth_version = '19.2.0'
             def navigation_version = '2.2.1'
+            def firestore_ktx_version = '21.0.0'
+            def firestore_coroutines_version = '0.0.7'
 
             libraries = [
 
@@ -68,6 +70,9 @@ buildscript {
                     //firebase
                     "com.google.firebase:firebase-auth:$firebase_auth_version",
                     "com.firebaseui:firebase-ui-auth:6.2.0",
+                    "com.google.firebase:firebase-firestore-ktx:$firestore_ktx_version",
+                    "com.github.brotoo25:firestore-coroutines:$firestore_coroutines_version",
+
 
                     //navigation
                     "androidx.navigation:navigation-fragment-ktx:$navigation_version",
@@ -132,6 +137,7 @@ buildscript {
         repositories {
             google()
             jcenter()
+            maven { url 'https://jitpack.io' }
 
         }
     }

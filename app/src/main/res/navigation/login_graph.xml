@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/inputPhoneFragment"
-        android:name="com.fourcore.login.input_phone.PhoneLoginFragment"
+        android:name="com.fourcore.presentation.login.input_phone.PhoneLoginFragment"
         android:label="InputPhoneFragment" >
         <action
             android:id="@+id/action_inputPhoneFragment_to_userInfoFragment"
@@ -13,7 +13,7 @@
     </fragment>
     <fragment
         android:id="@+id/userInfoFragment"
-        android:name="com.fourcore.login.user_info.UserInfoFragment"
+        android:name="com.fourcore.presentation.login.user_info.UserInfoFragment"
         android:label="UserInfoFragment" >
         <argument
             android:name="userPhone"
