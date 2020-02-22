@@ -18,6 +18,7 @@
     <ImageButton
         android:layout_width="@dimen/width_create_new_challenge_b"
         android:layout_height="@dimen/height_create_new_challenge_b"
+        android:src="@color/colorAccent"
         android:id="@+id/createNewChallengeB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
