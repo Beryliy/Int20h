@@ -24,6 +24,11 @@ class ChallengesAdapter: RecyclerView.Adapter<ChallengesAdapter.ChallengeViewHol
         holder.bind(createdChaleges.get(position))
     }
 
+    fun updateCreatedChallenges(updatedChallenges: MutableList<CreatedChallenge>) {
+        createdChaleges = updatedChallenges
+        notifyDataSetChanged()
+    }
+
     inner class ChallengeViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bind(createdChallenge: CreatedChallenge) {
             itemView.challengeNameTv.text = createdChallenge.name
