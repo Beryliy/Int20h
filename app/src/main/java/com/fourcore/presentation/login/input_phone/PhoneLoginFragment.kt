@@ -56,11 +56,23 @@ class PhoneLoginFragment : NavFragment(), CoroutineScope {
             if (resultCode == Activity.RESULT_OK) {
                 val user = FirebaseAuth.getInstance().currentUser
                 if (user != null) {
-                    navController.navigate(
-                        PhoneLoginFragmentDirections.actionInputPhoneFragmentToUserInfoFragment(
-                            user.phoneNumber!!
-                        )
-                    )
+                    launch {
+                        try {
+                            withContext(Dispatchers.IO) {
+                                get<UserRepository>().apply {
+                                    getUserByPhone(user.phoneNumber!!)
+                                    updateCurrentUser(user.phoneNumber!!)
+                                }
+                            }
+                            startActivity(Intent(requireContext(), MainActivity::class.java))
+                        }catch (e: IllegalStateException) {
+                            navController.navigate(
+                                PhoneLoginFragmentDirections.actionInputPhoneFragmentToUserInfoFragment(
+                                    user.phoneNumber!!
+                                )
+                            )
+                        }
+                    }
                 } else {
                     Toast.makeText(requireContext(), "Login error", Toast.LENGTH_LONG).show()
                 }
@@ -68,6 +80,11 @@ class PhoneLoginFragment : NavFragment(), CoroutineScope {
                 Toast.makeText(requireContext(), response?.error?.message, Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    override fun onDestroy() {
+        coroutineContext.cancel()
+        super.onDestroy()
     }
 
     private val job = SupervisorJob()

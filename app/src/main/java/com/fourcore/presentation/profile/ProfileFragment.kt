@@ -19,8 +19,8 @@ class ProfileFragment : NavFragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.userLiveData.observe(viewLifecycleOwner, Observer {
             profileNameTextView.text = "Name: ${it.name}"
-            profileScoreTextView.text = "Name: ${it.points}"
-            profilePhoneTextView.text = "Name: ${it.phoneNumber}"
+            profileScoreTextView.text = "Score: ${it.points}"
+            profilePhoneTextView.text = "Phone: ${it.phoneNumber}"
         })
         profileLogout.setOnClickListener {
             viewModel.logout()
