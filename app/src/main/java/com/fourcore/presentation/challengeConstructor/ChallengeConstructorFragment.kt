@@ -2,11 +2,10 @@ package com.fourcore.presentation.challengeConstructor
 
 
 import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
@@ -43,7 +42,7 @@ class ChallengeConstructorFragment : NavFragment() {
             showShortToast(context!!, it)
         })
         viewModel.contactsInitedEvent.observe(viewLifecycleOwner, Observer {
-            ArrayAdapter(context!!, R.layout.contact_item, it)
+            ContactsArrayAdapter(context!!, it)
                 .also {
                     it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     receiverSp.adapter = it
@@ -61,24 +60,35 @@ class ChallengeConstructorFragment : NavFragment() {
                 viewModel.challengeReceiver = parent!!.getItemAtPosition(position) as User
             }
         })
-
+        deadlineB.setOnClickListener{
+            showDatePickerDialog()
+        }
     }
 
     private fun showDatePickerDialog() {
-        viewModel.liveCalendar.observe(viewLifecycleOwner, Observer {
             DatePickerDialog(
                 context!!,
                 object: DatePickerDialog.OnDateSetListener{
                     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
                         viewModel.changeDeadlineDate(year, month, dayOfMonth)
+                        showTimepickerDialog()
                     }
                 },
-                it.get(Calendar.YEAR),
-                it.get(Calendar.MONTH),
-                it.get(Calendar.DAY_OF_MONTH)
-            )
-        })
+                viewModel.deadlineCalendar.get(Calendar.YEAR),
+                viewModel.deadlineCalendar.get(Calendar.MONTH),
+                viewModel.deadlineCalendar.get(Calendar.DAY_OF_MONTH)
+            ).show()
     }
 
-    private fun showTimepickerPicker(){}
+    private fun showTimepickerDialog(){
+            TimePickerDialog(
+                context!!,
+                TimePickerDialog.OnTimeSetListener{ view, hourOfDay, minute ->
+                    viewModel.changeDeadlineTime(hourOfDay, minute)
+                },
+                viewModel.deadlineCalendar.get(Calendar.HOUR_OF_DAY),
+                viewModel.deadlineCalendar.get(Calendar.MINUTE),
+                true
+            ).show()
+    }
 }

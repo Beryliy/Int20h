@@ -1,7 +1,5 @@
 package com.fourcore.presentation.challengeConstructor
 
-import android.widget.ArrayAdapter
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.fourcore.SingleLiveEvent
 import com.fourcore.data.repository.ChallengeRepository
@@ -20,12 +18,8 @@ class ChallengeConstructorViewModel(
     lateinit var challengeReceiver: User
     val challengeNotValidEvent = SingleLiveEvent<String>()
     val contactsInitedEvent = SingleLiveEvent<List<User>>()
-    val liveCalendar = MutableLiveData<Calendar>().apply {
-        value = Calendar.getInstance()
-    }
-    lateinit var deadline: Date
-    fun createChallenge(
-    ) {
+    val deadlineCalendar = Calendar.getInstance()
+    fun createChallenge() {
         viewModelScope.launch {
             if (validateChallange(presentationChallenge)) {
                 val challenge = Challenge(
@@ -33,7 +27,7 @@ class ChallengeConstructorViewModel(
                     challengeReceiver,
                     presentationChallenge.name,
                     presentationChallenge.description,
-                    deadline,
+                    deadlineCalendar,
                     1,
                     4,
                     1
@@ -53,15 +47,14 @@ class ChallengeConstructorViewModel(
     }
 
     fun changeDeadlineDate(year: Int, month: Int, day: Int) {
-        val newDate = liveCalendar.value?.clone() as Calendar
-        newDate.set(Calendar.YEAR, year)
-        newDate.set(Calendar.MONTH, month)
-        newDate.set(Calendar.DAY_OF_MONTH, day)
-        liveCalendar.value = newDate
+        deadlineCalendar.set(Calendar.YEAR, year)
+        deadlineCalendar.set(Calendar.MONTH, month)
+        deadlineCalendar.set(Calendar.DAY_OF_MONTH, day)
     }
 
-    fun changeDeadlineTime() {
-
+    fun changeDeadlineTime(hour: Int, minute: Int) {
+        deadlineCalendar.set(Calendar.HOUR, hour)
+        deadlineCalendar.set(Calendar.MINUTE, minute)
     }
 
     private fun validateChallange(presentationChallenge: PresentationChallenge): Boolean {
