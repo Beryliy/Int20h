@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<navigation
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/cratedChallengesFragment">
+    app:startDestination="@id/profileFragment">
 
     <fragment
         android:id="@+id/cratedChallengesFragment"
@@ -17,10 +15,7 @@
         android:name="com.fourcore.presentation.challengeConstructor.ChallengeConstructorFragment"
         android:label="fragment_challenge_constructor"
         tools:layout="@layout/fragment_challenge_constructor" />
-=======
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_graph"
-    app:startDestination="@id/profileFragment">
+
 
     <fragment
         android:id="@+id/profileFragment"
@@ -38,5 +33,4 @@
         android:id="@+id/scoreListFragment"
         android:name="com.fourcore.presentation.score_list.ScoreListFragment"
         android:label="ScoreListFragment" />
->>>>>>> dev
 </navigation>
