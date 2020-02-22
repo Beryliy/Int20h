@@ -21,6 +21,8 @@ class ScoreListFragment : NavFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        scoreListRecyclerView.setHasFixedSize(true)
+        scoreListRecyclerView.adapter = adapter
         viewModel.loadingLiveData.observe(viewLifecycleOwner, Observer {
             scoreLoadingProgressBar.visibility = if(it) VISIBLE else INVISIBLE
         })
