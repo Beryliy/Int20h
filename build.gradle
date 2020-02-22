@@ -22,6 +22,7 @@ buildscript {
             def truth_version = '1.0'
             def room_version = '2.2.2'
             def work_version = '2.2.0'
+            def koin_version = '2.0.1'
 
             libraries = [
 
@@ -56,6 +57,12 @@ buildscript {
                     "com.google.code.gson:gson:$gson_version",
                     "com.squareup.retrofit2:converter-gson:$retrofit_gson_version",
                     "com.squareup.retrofit2:retrofit:$retrofit_version",
+
+                    //koin
+                    "org.koin:koin-core:$koin_version",
+                    "org.koin:koin-androidx-scope:$koin_version",
+                    "org.koin:koin-androidx-viewmodel:$koin_version"
+
             ]
 
             librariesKapt = [
@@ -101,10 +108,12 @@ buildscript {
 
         }
         dependencies {
-            classpath 'com.android.tools.build:gradle:3.5.2'
+            classpath 'com.android.tools.build:gradle:3.5.3'
             classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
             // NOTE: Do not place your application dependencies here; they belong
             // in the individual module build.gradle files
+            def nav_version = "2.1.0"
+            classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
         }
     }
 
