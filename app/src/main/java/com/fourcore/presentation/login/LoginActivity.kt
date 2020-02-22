@@ -1,4 +1,4 @@
-package com.fourcore.login
+package com.fourcore.presentation.login
 
 import android.content.Context
 import android.content.Intent

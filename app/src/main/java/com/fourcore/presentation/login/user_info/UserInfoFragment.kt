@@ -1,4 +1,4 @@
-package com.fourcore.login.user_info
+package com.fourcore.presentation.login.user_info
 
 import android.content.Intent
 import android.os.Bundle

@@ -24,14 +24,6 @@ class ChallengeConstructorFragment : NavFragment() {
 
     override fun layoutId() = R.layout.fragment_challenge_constructor
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_challenge_constructor, container, false)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         createChallengeB.setOnClickListener{
