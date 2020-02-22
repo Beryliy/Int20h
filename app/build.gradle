@@ -29,6 +29,7 @@ android {
 
 dependencies {
     implementation libraries
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt librariesKapt
     debugImplementation librariesDebug
 
