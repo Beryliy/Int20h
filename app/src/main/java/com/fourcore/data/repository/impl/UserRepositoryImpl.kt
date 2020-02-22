@@ -16,12 +16,13 @@ class UserRepositoryImpl(private val firestore: FirebaseFirestore) : UserReposit
     @Synchronized
     override suspend fun getCurrentUser() = currentUser
 
-    override suspend fun initCurrentUser(phoneNumber: String) {
+    override suspend fun updateCurrentUser(phoneNumber: String): User {
         currentUser = firestore.collection("users").whereEqualTo("phoneNumber", phoneNumber).awaitSingleWithId { snap, id ->
             val user = snap.toObject(User::class.java)
             user!!.id = id
             user
         }
+        return currentUser
     }
 
     override suspend fun getAllUsers(): List<User> {
@@ -33,7 +34,7 @@ class UserRepositoryImpl(private val firestore: FirebaseFirestore) : UserReposit
     }
 
     override suspend fun getUserById(id: String): User {
-        return firestore.collection("users").document("users/$id").await(User::class.java)
+        return firestore.collection("users").document(id).await(User::class.java)
     }
 
     override suspend fun getUserByPhone(phoneNumber: String): User {

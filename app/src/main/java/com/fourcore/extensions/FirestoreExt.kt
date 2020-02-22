@@ -23,7 +23,7 @@ suspend fun <T : Any> Query.awaitWithId(parser: (documentSnapshot: DocumentSnaps
 suspend fun <T : Any> Query.awaitSingleWithId(parser: (documentSnapshot: DocumentSnapshot, id: String) -> T): T {
     return suspendCancellableCoroutine { continuation ->
         get().addOnCompleteListener {
-            if (it.isSuccessful && it.result != null) {
+            if (it.isSuccessful && it.result != null  && !it.result?.documents.isNullOrEmpty()) {
                 val snap = it.result!!.documents[0]
                 continuation.resume(parser(snap, snap.id))
             } else {

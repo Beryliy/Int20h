@@ -17,7 +17,7 @@ class UserInfoViewModel(private val userRepositoryImpl: UserRepository) : ViewMo
             userRepositoryImpl.createUser(
                 User(
                     name,
-                    20,
+                    0,
                     phone
                 )
             )
