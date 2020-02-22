@@ -33,7 +33,7 @@ class UserRepositoryImpl(private val firestore: FirebaseFirestore) : UserReposit
     }
 
     override suspend fun getUserById(id: String): User {
-        return firestore.collection("users").document("users/$id").await(User::class.java)
+        return firestore.collection("users").document(id).await(User::class.java)
     }
 
     override suspend fun getUserByPhone(phoneNumber: String): User {

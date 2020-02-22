@@ -11,6 +11,6 @@ import org.koin.dsl.module
 
 val appModule = module {
     single<UserRepository> { UserRepositoryImpl(FirebaseFirestore.getInstance()) }
-    single<ChallengeRepository> { ChallengeRepositoryImpl() }
+    single<ChallengeRepository> { ChallengeRepositoryImpl(FirebaseFirestore.getInstance()) }
     viewModel { ChallengeConstructorViewModel(get(), get()) }
 }
