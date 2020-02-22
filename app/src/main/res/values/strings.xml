@@ -3,4 +3,7 @@
     <string name="phone_error">Enter valid phone number</string>
     <string name="register_fail">Register fail</string>
     <string name="name">Name:</string>
+    <string name="profile">Profile</string>
+    <string name="received_tasks">Received</string>
+    <string name="my_tasks">Sent</string>
 </resources>

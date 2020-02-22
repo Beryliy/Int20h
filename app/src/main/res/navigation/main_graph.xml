@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_graph"
+    app:startDestination="@id/profileFragment">
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.fourcore.presentation.profile.ProfileFragment"
+        android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/myTasksFragment"
+        android:name="com.fourcore.presentation.my_tasks.MyTasksFragment"
+        android:label="MyTasksFragment" />
+    <fragment
+        android:id="@+id/receivedTasksFragment"
+        android:name="com.fourcore.presentation.received_tasks.ReceivedTasksFragment"
+        android:label="ReceivedTasksFragment" />
+</navigation>
