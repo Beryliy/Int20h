@@ -3,5 +3,10 @@ package com.fourcore.data.repository
 import com.fourcore.domain.User
 
 interface UserRepository {
-    fun getCurrentUser(): User
+    suspend fun getCurrentUser(): User
+    suspend fun createUser(user: User)
+    suspend fun initCurrentUser(phoneNumber: String)
+    suspend fun getAllUsers(): List<User>
+    suspend fun getUserById(id: String): User
+    suspend fun getUserByPhone(phoneNumber: String): User
 }
