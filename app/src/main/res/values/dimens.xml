@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="size_scalable">0dp</dimen>
+
+    <!--challenge constructor-->
+    <dimen name="height_challenge_name_et">40dp</dimen>
+    <dimen name="height_challenge_description_et">40dp</dimen>
+    <dimen name="height_date_time_picher_b">40dp</dimen>
+    <dimen name="height_create_challenge_b">40dp</dimen>
 </resources>
