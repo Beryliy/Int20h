@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/login_graph"
+    app:startDestination="@id/inputPhoneFragment">
+
+    <fragment
+        android:id="@+id/inputPhoneFragment"
+        android:name="com.fourcore.login.input_phone.PhoneLoginFragment"
+        android:label="InputPhoneFragment" >
+        <action
+            android:id="@+id/action_inputPhoneFragment_to_userInfoFragment"
+            app:destination="@id/userInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userInfoFragment"
+        android:name="com.fourcore.login.user_info.UserInfoFragment"
+        android:label="UserInfoFragment" >
+        <argument
+            android:name="userPhone"
+            app:argType="string" />
+    </fragment>
+</navigation>
