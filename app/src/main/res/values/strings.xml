@@ -7,4 +7,5 @@
     <string name="received_tasks">Received</string>
     <string name="my_tasks">Sent</string>
     <string name="score">Score</string>
+    <string name="perfom">Perfom</string>
 </resources>
