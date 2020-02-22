@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import com.fourcore.NavFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -27,16 +29,35 @@ class ChallengeConstructorFragment : NavFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         createChallengeB.setOnClickListener{
-            viewModel.createChallenge(
-                PresentationChallenge(
-                    challengeNameEt.text.toString(),
-                    challengeDescriptionEt.text.toString(),
-                    deadline
-                )
-                )
+            viewModel.presentationChallenge = PresentationChallenge(
+                challengeNameEt.text.toString(),
+                challengeDescriptionEt.text.toString()
+            )
+            viewModel.createChallenge()
         }
         viewModel.challengeNotValidEvent.observe(viewLifecycleOwner, Observer {
             showShortToast(context!!, it)
+        })
+        viewModel.contactsInitedEvent.observe(viewLifecycleOwner, Observer {
+            ArrayAdapter(context!!, R.layout.contact_item, it)
+                .also {
+                    it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    receiverSp.adapter = it
+
+                }
+        })
+        receiverSp.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+
+            }
+
         })
     }
 
