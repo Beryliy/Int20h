@@ -74,7 +74,6 @@ buildscript {
                     "com.github.brotoo25:firestore-coroutines:$firestore_coroutines_version",
 
 
-
                     //navigation
                     "androidx.navigation:navigation-fragment-ktx:$navigation_version",
                     "androidx.navigation:navigation-ui-ktx:$navigation_version"

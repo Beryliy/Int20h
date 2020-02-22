@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.challengeConstructor.ChallengeConstructorFragment">
+    
+    <EditText
+        android:layout_width="@dimen/size_scalable"
+        android:layout_height="@dimen/height_challenge_name_et"
+        android:id="@+id/challengeNameEt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="challengeName"/>
+
+    <EditText
+        android:layout_width="@dimen/size_scalable"
+        android:layout_height="@dimen/height_challenge_description_et"
+        android:id="@+id/challengeDescriptionEt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/challengeNameEt"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="challengeDescription bla bla"/>
+
+    <Button
+        android:layout_width="@dimen/size_scalable"
+        android:layout_height="@dimen/height_date_time_picher_b"
+        android:id="@+id/deadlineB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/challengeDescriptionEt"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="chose deadline"/>
+
+    <Button
+        android:layout_width="@dimen/size_scalable"
+        android:layout_height="@dimen/height_create_challenge_b"
+        android:id="@+id/createChallengeB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:text="create"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
