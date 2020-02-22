@@ -16,27 +16,29 @@ class ChallengeConstructorViewModel(
     val userRepository: UserRepository
 ): BaseViewModel() {
     lateinit var presentationChallenge: PresentationChallenge
+    lateinit var challengeReceiver: User
     val challengeNotValidEvent = SingleLiveEvent<String>()
     val contactsInitedEvent = SingleLiveEvent<List<User>>()
-    var deadline: Date? = null
+    lateinit var deadline: Date
     fun createChallenge(
     ) {
-//        viewModelScope.launch {
-//            if (validateChallange(presentationChallenge)) {
-//                val challenge = Challenge(
-//                    userRepository.getCurrentUser(),
-//                    presentationChallenge.name,
-//                    presentationChallenge.description,
-//                    1,
-//                    4,
-//                    1,
-//                    deadline
-//                )
-//                challengeRepository.insertChallenge(challenge)
-//            } else {
-//                challengeNotValidEvent.postValue("")
-//            }
-//        }
+        viewModelScope.launch {
+            if (validateChallange(presentationChallenge)) {
+                val challenge = Challenge(
+                    userRepository.getCurrentUser(),
+                    challengeReceiver,
+                    presentationChallenge.name,
+                    presentationChallenge.description,
+                    deadline,
+                    1,
+                    4,
+                    1
+                )
+                challengeRepository.createChallenge(challenge)
+            } else {
+                challengeNotValidEvent.postValue("")
+            }
+        }
     }
 
     fun initContacts() {

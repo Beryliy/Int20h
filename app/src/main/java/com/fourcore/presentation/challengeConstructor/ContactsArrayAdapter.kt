@@ -13,7 +13,6 @@ class ContactsArrayAdapter(
     context: Context,
     contacts: List<User>
 ): ArrayAdapter<User>(context, 0, contacts) {
-
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val contact = getItem(position)
         val spinnerItem = if(convertView == null) {

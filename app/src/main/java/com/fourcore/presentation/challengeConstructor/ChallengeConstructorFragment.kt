@@ -13,6 +13,7 @@ import com.fourcore.NavFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 import com.fourcore.R
+import com.fourcore.domain.User
 import com.fourcore.global.util.showShortToast
 import kotlinx.android.synthetic.main.fragment_challenge_constructor.*
 import java.util.*
@@ -35,6 +36,7 @@ class ChallengeConstructorFragment : NavFragment() {
             )
             viewModel.createChallenge()
         }
+        viewModel.initContacts()
         viewModel.challengeNotValidEvent.observe(viewLifecycleOwner, Observer {
             showShortToast(context!!, it)
         })
@@ -43,7 +45,6 @@ class ChallengeConstructorFragment : NavFragment() {
                 .also {
                     it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     receiverSp.adapter = it
-
                 }
         })
         receiverSp.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener{
@@ -55,11 +56,8 @@ class ChallengeConstructorFragment : NavFragment() {
                 position: Int,
                 id: Long
             ) {
-
+                viewModel.challengeReceiver = parent!!.getItemAtPosition(position) as User
             }
-
         })
     }
-
-
 }
