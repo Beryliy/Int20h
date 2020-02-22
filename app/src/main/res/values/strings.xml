@@ -6,4 +6,5 @@
     <string name="profile">Profile</string>
     <string name="received_tasks">Received</string>
     <string name="my_tasks">Sent</string>
+    <string name="score">Score</string>
 </resources>

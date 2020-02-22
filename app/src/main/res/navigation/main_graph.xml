@@ -15,4 +15,8 @@
         android:id="@+id/receivedTasksFragment"
         android:name="com.fourcore.presentation.received_tasks.ReceivedTasksFragment"
         android:label="ReceivedTasksFragment" />
+    <fragment
+        android:id="@+id/scoreListFragment"
+        android:name="com.fourcore.presentation.score_list.ScoreListFragment"
+        android:label="ScoreListFragment" />
 </navigation>

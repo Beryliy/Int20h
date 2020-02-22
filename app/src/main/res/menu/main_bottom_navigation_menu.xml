@@ -14,6 +14,12 @@
         />
 
     <item
+        android:id="@+id/scoreListFragment"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/score"
+        />
+
+    <item
         android:id="@+id/profileFragment"
         android:icon="@mipmap/ic_launcher"
         android:title="@string/profile"
