@@ -31,7 +31,7 @@ class PhoneLoginFragment : NavFragment(), CoroutineScope {
             startLoginScreen()
         } else {
             launch {
-                withContext(Dispatchers.IO) { get<UserRepository>().initCurrentUser(FirebaseAuth.getInstance().currentUser!!.phoneNumber!!) }
+                withContext(Dispatchers.IO) { get<UserRepository>().updateCurrentUser(FirebaseAuth.getInstance().currentUser!!.phoneNumber!!) }
                 startActivity(Intent(requireContext(), MainActivity::class.java))
                 requireActivity().finish()
             }
