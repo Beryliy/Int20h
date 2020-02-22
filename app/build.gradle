@@ -8,7 +8,6 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
-apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -27,6 +26,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
@@ -37,3 +44,6 @@ dependencies {
     testImplementation testLibraries
     androidTestImplementation androidTestLibraries
 }
+
+apply plugin: 'com.google.gms.google-services'
+
