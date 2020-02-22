@@ -1,10 +1,14 @@
 package com.fourcore.domain
 
-data class Chalenge(
+import java.util.*
+
+data class Challenge(
+    val creator: User,
     val name: String,
     val creationPrice: Int,
     val award: Int,
     val fine: Int,
-    val description: String
+    val description: String,
+    val deadline: Date?
 ) {
 }
