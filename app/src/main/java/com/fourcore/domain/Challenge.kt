@@ -8,7 +8,7 @@ data class Challenge(
     val creationPrice: Int,
     val award: Int,
     val fine: Int,
-    val description: String,
+    val description: String?,
     val deadline: Date?
 ) {
 }
