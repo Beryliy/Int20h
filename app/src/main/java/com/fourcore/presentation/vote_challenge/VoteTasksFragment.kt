@@ -22,11 +22,9 @@ class VoteTasksFragment : NavFragment() {
 
     private val challengPerformList = Stack<ChallengePerform>()
     private var currentPerform: ChallengePerform? = null
-    private val loadingDialog = ProgressDialogFragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        voteRoot.visibility = INVISIBLE
         viewModel.getVoteList().observe(viewLifecycleOwner, Observer {
             challengPerformList.clear()
             challengPerformList.addAll(it)
@@ -40,6 +38,9 @@ class VoteTasksFragment : NavFragment() {
             currentPerform?.let { it1 -> viewModel.decreaseVote(it1) }
             showFirstItem()
         }
+        viewModel.loadingLiveData.observe(viewLifecycleOwner, Observer {
+            if(it) progressBar.visibility = VISIBLE else progressBar.visibility = INVISIBLE
+        })
     }
 
     private fun showFirstItem() {
