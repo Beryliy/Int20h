@@ -37,7 +37,10 @@ class ChallengeConstructorFragment : NavFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadingLiveData.observe(viewLifecycleOwner, Observer {
-            if(it)loadingDialog.show(parentFragmentManager, "Sfs") else loadingDialog.dismissAllowingStateLoss()
+            if(it)loadingDialog.show(parentFragmentManager, "Sfs") else {
+                loadingDialog.dismissAllowingStateLoss()
+                navController.popBackStack()
+            }
         })
         createChallengeB.setOnClickListener{
             viewModel.presentationChallenge = PresentationChallenge(
@@ -45,7 +48,6 @@ class ChallengeConstructorFragment : NavFragment() {
                 challengeDescriptionEt.text.toString()
             )
             viewModel.createChallenge()
-            findNavController().popBackStack()
         }
         viewModel.initContacts()
         viewModel.challengeNotValidEvent.observe(viewLifecycleOwner, Observer {

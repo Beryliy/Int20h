@@ -1,9 +1,6 @@
 package com.fourcore.presentation.vote_challenge
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.fourcore.data.repository.ChallengeRepository
 import com.fourcore.data.repository.UserRepository
 import com.fourcore.domain.ChallengePerform
@@ -15,16 +12,17 @@ class VoteTaskViewModel(
     private val challengeRepository: ChallengeRepository
 ) : ViewModel() {
 
-    private val challengePerformLiveData = MutableLiveData<List<ChallengePerform>>()
+    private val challengePerformLiveData = MediatorLiveData<List<ChallengePerform>>()
     val loadingLiveData = MutableLiveData<Boolean>()
 
     fun getVoteList(): LiveData<List<ChallengePerform>> {
         viewModelScope.launch {
             loadingLiveData.postValue(true)
-            val list = challengeRepository.getUnVotePerformChallenges(userRepository.getCurrentUser().id!!)
-            challengePerformLiveData.postValue(list)
+            val voteUserId = userRepository.getCurrentUser().id!!
+            challengePerformLiveData.addSource(challengeRepository.getUnVotePerformChallenges()) {list ->
+                challengePerformLiveData.postValue(list.filter {!it.likeIds.contains(voteUserId) })
+            }
             loadingLiveData.postValue(false)
-
         }
         return challengePerformLiveData
     }
