@@ -16,4 +16,7 @@
     <string name="feed">Feed</string>
     <string name="specifyDeadline">Specify deadline</string>
     <string name="create">Create</string>
+    <string name="task_title">Task title</string>
+    <string name="task_description">Task description</string>
+    <string name="pick_deadline">Pick deadLine</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.fourcore.presentation.challengeConstructor
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.work.Data
 import androidx.work.OneTimeWorkRequest
@@ -25,8 +26,11 @@ class ChallengeConstructorViewModel(
     val contactsInitedEvent = SingleLiveEvent<List<User>>()
     val deadlineCalendar = Calendar.getInstance()
     val workerRequestEvent = SingleLiveEvent<OneTimeWorkRequest>()
+
+    val loadingLiveData = MutableLiveData<Boolean>()
     fun createChallenge() {
         viewModelScope.launch {
+            loadingLiveData.postValue(true)
             if (validateChallange(presentationChallenge)) {
                 val challenge = Challenge(
                     userRepository.getCurrentUser(),
@@ -52,7 +56,9 @@ class ChallengeConstructorViewModel(
                     .addTag(DeadlineCheckerWorker::class.java.simpleName)
                     .build()
                 workerRequestEvent.postValue(deadlineWorkRequest)
+                loadingLiveData.postValue(false)
             } else {
+                loadingLiveData.postValue(false)
                 challengeNotValidEvent.postValue("")
             }
         }

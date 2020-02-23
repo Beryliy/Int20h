@@ -34,13 +34,14 @@
     <TextView
         android:id="@+id/inputPhoneNextTextView"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_button"
         app:layout_constraintBottom_toBottomOf="parent"
         android:text="Next"
         android:gravity="center"
-        android:background="@color/colorAccent"
         android:textColor="@color/colorTextLight"
         android:layout_marginBottom="12dp"
+        android:padding="9dp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:hint="@string/task_title"
         tools:text="challengeName"/>
 
     <EditText
@@ -23,10 +24,11 @@
         app:layout_constraintTop_toBottomOf="@id/challengeNameEt"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/margin_top_challenge_fields"
+        android:hint="@string/task_description"
         tools:text="challengeDescription bla bla"/>
 
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="@dimen/height_date_time_picker_b"
         android:id="@+id/deadlineB"
@@ -35,6 +37,9 @@
         app:layout_constraintEnd_toStartOf="@id/deadlineTv"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         android:layout_marginTop="@dimen/margin_top_challenge_fields"
+        android:background="@drawable/shape_edit_text"
+        android:padding="6dp"
+        android:hint="@string/pick_deadline"
         tools:text="chose deadline"/>
 
     <TextView
@@ -70,14 +75,20 @@
         android:layout_marginTop="@dimen/margin_top_challenge_fields"
         app:layout_constraintHorizontal_chainStyle="spread_inside"/>
 
-    <Button
-        android:layout_width="@dimen/size_scalable"
-        android:layout_height="@dimen/height_create_challenge_b"
+
+    <TextView
         android:id="@+id/createChallengeB"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:text="@string/create"
+        android:layout_gravity="center"
+        android:background="@drawable/shape_button"
+        android:padding="9dp"
+        android:textColor="@color/colorTextLight"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text="create"/>
+        android:gravity="center"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

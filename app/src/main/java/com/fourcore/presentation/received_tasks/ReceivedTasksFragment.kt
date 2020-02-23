@@ -10,6 +10,7 @@ import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import androidx.lifecycle.Observer
 import com.fourcore.NavFragment
+import com.fourcore.ProgressDialogFragment
 import com.fourcore.R
 import com.fourcore.domain.Challenge
 import kotlinx.android.synthetic.main.fragment_received_tasks.*
@@ -24,6 +25,9 @@ class ReceivedTasksFragment : NavFragment() {
     }
 
     private val viewModel by viewModel<ReceivedTasksViewModel>()
+
+    private val loadingDialog = ProgressDialogFragment()
+
 
     private var choosedChallenge: Challenge? = null
 
@@ -57,6 +61,9 @@ class ReceivedTasksFragment : NavFragment() {
         viewModel.getChallangesLiveData().observe(viewLifecycleOwner, Observer {
             adapter.addNewItems(it)
             receivedTasksLoadingProgressBar.visibility = INVISIBLE
+        })
+        viewModel.loadingLiveData.observe(viewLifecycleOwner, Observer {
+            if(it) loadingDialog.show(parentFragmentManager, "sadas") else loadingDialog.dismissAllowingStateLoss()
         })
     }
 }
