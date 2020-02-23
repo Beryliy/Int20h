@@ -29,6 +29,10 @@ class ChallengeConstructorViewModel(
     val workerRequestEvent = SingleLiveEvent<OneTimeWorkRequest>()
 
     val loadingLiveData = MutableLiveData<Boolean>()
+    init {
+        deadlineCalendar.add(Calendar.DATE, 2)
+    }
+
     fun createChallenge() {
         viewModelScope.launch {
             loadingLiveData.postValue(true)
