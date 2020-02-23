@@ -13,8 +13,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
         android:hint="@string/task_title"
         tools:text="challengeName"/>
 
@@ -30,7 +28,7 @@
         tools:text="challengeDescription bla bla"/>
 
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="@dimen/height_date_time_picker_b"
         android:id="@+id/deadlineB"
