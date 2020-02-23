@@ -2,6 +2,11 @@
 <resources>
     <dimen name="size_scalable">0dp</dimen>
 
+    <!--text-->
+    <dimen name="title_text_size">28sp</dimen>
+    <dimen name="medium_text_size">16sp</dimen>
+    <dimen name="text_size_small">10sp</dimen>
+
     <!--challenge constructor-->
     <dimen name="height_challenge_name_et">40dp</dimen>
     <dimen name="height_challenge_description_et">40dp</dimen>
@@ -14,5 +19,6 @@
     <!--challenges list-->
     <dimen name="height_date_time_picker_b">36dp</dimen>
     <dimen name="height_challenge_background">96dp</dimen>
-    <dimen name="radius_challenge_item_corner">42dp</dimen>
+    <dimen name="radius_challenge_item_corner">16dp</dimen>
+    <dimen name="margin_challenge_content">18dp</dimen>
 </resources>

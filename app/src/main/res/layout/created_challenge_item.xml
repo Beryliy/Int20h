@@ -19,26 +19,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/challengeNameTv"
+        android:textAppearance="@style/TitleText"
+        android:gravity="start"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/deadlineTv"
+        android:layout_marginStart="@dimen/margin_challenge_content"
+        android:layout_marginEnd="@dimen/margin_challenge_content"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         tools:text="challenge name"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/size_scalable"
         android:layout_height="wrap_content"
         android:id="@+id/challengeDescriptionTv"
+        android:textAppearance="@style/Description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/challengeNameTv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:text=""/>
+        android:layout_marginStart="@dimen/margin_challenge_content"
+        android:layout_marginEnd="@dimen/margin_challenge_content"
+        tools:text="description wau"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/deadlineTv"
+        android:gravity="end"
+        android:textColor="@android:color/white"
+        android:textAppearance="@style/SecondatyText"
+        app:layout_constraintStart_toEndOf="@id/challengeNameTv"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        android:layout_marginEnd="@dimen/margin_challenge_content"
+        tools:text="02.02.2020 17;45"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
