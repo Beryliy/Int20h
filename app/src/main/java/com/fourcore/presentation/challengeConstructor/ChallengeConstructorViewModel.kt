@@ -38,6 +38,7 @@ class ChallengeConstructorViewModel(
                     1
                 )
                 challengeRepository.createChallenge(challenge)
+                userRepository.updateUser(userRepository.getCurrentUser().apply { points++ })
                 val deadlineWorkRequest = OneTimeWorkRequestBuilder<DeadlineCheckerWorker>()
                     .setInitialDelay(deadlineCalendar.timeInMillis - Date().time, TimeUnit.MILLISECONDS)
                     .build()
