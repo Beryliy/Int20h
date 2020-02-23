@@ -3,10 +3,9 @@
     android:shape="rectangle">
     <corners
         android:radius="@dimen/radius_challenge_item_corner"/>
-    <solid
-        android:color="@color/grey" />
+
     <gradient
-        android:angle="135"
+        android:angle="0"
         android:startColor="@color/transparent"
         android:endColor="@android:color/black"/>
 </shape>

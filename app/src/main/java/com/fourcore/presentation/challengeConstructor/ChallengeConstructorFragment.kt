@@ -11,6 +11,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.work.WorkManager
 import com.fourcore.NavFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -39,6 +40,7 @@ class ChallengeConstructorFragment : NavFragment() {
                 challengeDescriptionEt.text.toString()
             )
             viewModel.createChallenge()
+            findNavController().popBackStack()
         }
         viewModel.initContacts()
         viewModel.challengeNotValidEvent.observe(viewLifecycleOwner, Observer {

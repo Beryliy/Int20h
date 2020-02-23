@@ -2,17 +2,14 @@ package com.fourcore.presentation.createdChallengesLibrary
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fourcore.NavFragment
 
 import com.fourcore.R
-import kotlinx.android.synthetic.main.fragment_crated_challenges.*
+import kotlinx.android.synthetic.main.fragment_created_challenges.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CreatedChallengesFragment : NavFragment() {
@@ -20,7 +17,7 @@ class CreatedChallengesFragment : NavFragment() {
     val createdChallengesAdapter: ChallengesAdapter by lazy {
         ChallengesAdapter()
     }
-    override fun layoutId() = R.layout.fragment_crated_challenges
+    override fun layoutId() = R.layout.fragment_created_challenges
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
