@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.kiwimob.firestore.coroutines.addAwait
 import com.kiwimob.firestore.coroutines.deleteAwait
+import com.kiwimob.firestore.coroutines.updateAwait
 import kotlinx.coroutines.suspendCancellableCoroutine
 import java.io.ByteArrayOutputStream
 import java.lang.IllegalStateException
@@ -93,4 +94,19 @@ class ChallengeRepositoryImpl(
         firestore.collection("active_challenges").document(choosedChallenge.id!!).deleteAwait()
     }
 
+    override suspend fun getUnVotePerformChallenges(voteUserId: String): List<ChallengePerform> {
+        return firestore.collection("performing_challenges").awaitWithId {snap, id ->
+            val challenge: ChallengePerform = snap.toObject(ChallengePerform::class.java)!!
+            challenge.id = id
+            challenge
+        }.filter { !it.likeIds.contains(voteUserId) }
+    }
+
+    override suspend fun updateChallengePerform(currentPerform: ChallengePerform) {
+        firestore.collection("performing_challenges").document(currentPerform.id!!).updateAwait(
+            mapOf(
+                "score" to currentPerform.score,
+                "likeIds" to currentPerform.likeIds
+            ))
+    }
 }

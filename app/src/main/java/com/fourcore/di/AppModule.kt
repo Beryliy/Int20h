@@ -9,6 +9,7 @@ import com.fourcore.presentation.createdChallengesLibrary.CreatedChallengesViewM
 import com.fourcore.presentation.profile.ProfileViewModel
 import com.fourcore.presentation.received_tasks.ReceivedTasksViewModel
 import com.fourcore.presentation.score_list.ScoreListViewModel
+import com.fourcore.presentation.vote_challenge.VoteTaskViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -22,4 +23,5 @@ val appModule = module {
     viewModel { ProfileViewModel(get(), get()) }
     viewModel { ScoreListViewModel(get()) }
     viewModel { ReceivedTasksViewModel(get(), get()) }
+    viewModel { VoteTaskViewModel(get(), get()) }
 }
