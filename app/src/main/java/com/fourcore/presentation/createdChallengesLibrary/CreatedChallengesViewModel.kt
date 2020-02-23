@@ -24,6 +24,7 @@ class CreatedChallengesViewModel(
                     it.deadline.getReadableDate()
                 )
             }
+            liveCreatedChalenges.postValue(createdChallenges)
         }
     }
 }
