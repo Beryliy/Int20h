@@ -10,4 +10,5 @@ interface UserRepository {
     suspend fun getUserById(id: String): User
     suspend fun getUserByPhone(phoneNumber: String): User
     suspend fun updateUser(user: User)
+    suspend fun updateUserPoints(points: Int)
 }

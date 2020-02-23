@@ -26,6 +26,8 @@ class UserRepositoryImpl(private val firestore: FirebaseFirestore) : UserReposit
         return currentUser
     }
 
+
+
     override suspend fun getAllUsers(): List<User> {
         return firestore.collection("users").awaitWithId { snap, id ->
             val user: User = snap.toObject(User::class.java)!!
@@ -56,5 +58,9 @@ class UserRepositoryImpl(private val firestore: FirebaseFirestore) : UserReposit
     override suspend fun createUser(user: User) {
         currentUser = user
         firestore.collection("users").addAwait(user)
+    }
+
+    override suspend fun updateUserPoints(points: Int) {
+        firestore.collection("users").document("points").updateData()
     }
 }
