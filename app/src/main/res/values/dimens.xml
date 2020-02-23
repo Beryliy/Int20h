@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="size_scalable">0dp</dimen>
+    <dimen name="padding_top_fragment">18dp</dimen>
+    <dimen name="padding_side_fragment">20dp</dimen>
+    <dimen name="padding_bottom_fragment">16dp</dimen>
 
     <!--text-->
     <dimen name="title_text_size">28sp</dimen>
@@ -13,12 +16,13 @@
     <dimen name="height_date_time_picher_b">40dp</dimen>
     <dimen name="height_create_challenge_b">40dp</dimen>
 
-    <dimen name="width_create_new_challenge_b">64dp</dimen>
-    <dimen name="height_create_new_challenge_b">64dp</dimen>
+    <dimen name="width_create_new_challenge_b">72dp</dimen>
+    <dimen name="height_create_new_challenge_b">72dp</dimen>
 
     <!--challenges list-->
     <dimen name="height_date_time_picker_b">36dp</dimen>
     <dimen name="height_challenge_background">96dp</dimen>
     <dimen name="radius_challenge_item_corner">16dp</dimen>
     <dimen name="margin_challenge_content">18dp</dimen>
+    <dimen name="elevation_card">2dp</dimen>
 </resources>

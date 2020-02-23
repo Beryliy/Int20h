@@ -9,7 +9,7 @@
         android:id="@+id/createdChallengesFragment"
         android:name="com.fourcore.presentation.createdChallengesLibrary.CreatedChallengesFragment"
         android:label="fragment_crated_challenges"
-        tools:layout="@layout/fragment_crated_challenges" >
+        tools:layout="@layout/fragment_created_challenges" >
         <action
             android:id="@+id/action_createdChallengesFragment_to_challengeConstructorFragment"
             app:destination="@id/challengeConstructorFragment" />
