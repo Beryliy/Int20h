@@ -29,7 +29,9 @@
         android:text="@string/fui_next_default"
         android:gravity="center"
         android:textSize="14sp"
-        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:background="@drawable/shape_button"
+        android:padding="9dp"
+        android:textColor="@color/colorTextLight"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

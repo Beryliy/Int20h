@@ -10,12 +10,11 @@
         android:id="@+id/scoreItemImageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@drawable/ic_launcher_background"
-        android:src="@drawable/ic_launcher_foreground"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-       />
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/ic_launcher_background"
+        android:src="@drawable/ic_launcher_foreground" />
 
     <TextView
         android:id="@+id/scoreItemNameTextView"
