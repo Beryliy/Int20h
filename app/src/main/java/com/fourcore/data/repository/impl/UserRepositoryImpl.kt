@@ -60,7 +60,10 @@ class UserRepositoryImpl(private val firestore: FirebaseFirestore) : UserReposit
         firestore.collection("users").addAwait(user)
     }
 
-    override suspend fun updateUserPoints(points: Int) {
-        firestore.collection("users").document("points").updateData()
+    override suspend fun addUserPoints(user:User, points: Int) {
+        val updatedAmountOfPoints = user.points + points
+        firestore.collection("users").document(user.id!!).updateAwait(mapOf(
+            "points" to updatedAmountOfPoints
+        ))
     }
 }
