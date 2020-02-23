@@ -10,6 +10,7 @@ import com.fourcore.presentation.profile.ProfileViewModel
 import com.fourcore.presentation.received_tasks.ReceivedTasksViewModel
 import com.fourcore.presentation.score_list.ScoreListViewModel
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
