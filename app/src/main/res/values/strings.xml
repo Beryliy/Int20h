@@ -12,4 +12,6 @@
     <string name="my_tasks">Sent</string>
     <string name="score">Score</string>
     <string name="receiver">Receiver</string>
+    <string name="specifyDeadline">Specify deadline</string>
+    <string name="create">Create</string>
 </resources>

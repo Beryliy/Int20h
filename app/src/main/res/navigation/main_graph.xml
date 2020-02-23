@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_created_challenges" >
         <action
             android:id="@+id/action_createdChallengesFragment_to_challengeConstructorFragment"
-            app:destination="@id/challengeConstructorFragment" />
+            app:destination="@id/challengeConstructorFragment"
+            app:popUpTo="@id/challengeConstructorFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/challengeConstructorFragment"

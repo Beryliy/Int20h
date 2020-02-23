@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/DefaultFragment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.challengeConstructor.ChallengeConstructorFragment">
 
@@ -23,6 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/challengeNameEt"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/margin_top_challenge_fields"
         tools:text="challengeDescription bla bla"/>
 
 
@@ -33,15 +33,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/challengeDescriptionEt"
         app:layout_constraintEnd_toStartOf="@id/deadlineTv"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        android:layout_marginTop="@dimen/margin_top_challenge_fields"
         tools:text="chose deadline"/>
 
     <TextView
-        android:layout_width="@dimen/size_scalable"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/deadlineTv"
+        android:text="@string/specifyDeadline"
         app:layout_constraintStart_toEndOf="@id/deadlineB"
         app:layout_constraintTop_toBottomOf="@id/challengeDescriptionEt"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        android:layout_marginTop="@dimen/margin_top_challenge_fields"
         tools:text="23.12.2020 19:43"/>
 
     <TextView
@@ -52,21 +57,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/deadlineB"
         app:layout_constraintEnd_toStartOf="@id/receiverSp"
+        android:layout_marginTop="@dimen/margin_top_challenge_fields"
         app:layout_constraintHorizontal_chainStyle="spread_inside"/>
 
     <Spinner
-        android:layout_width="@dimen/size_scalable"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/receiverSp"
         app:layout_constraintStart_toEndOf="@id/receiverHintTv"
         app:layout_constraintTop_toBottomOf="@id/deadlineB"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/margin_top_challenge_fields"
         app:layout_constraintHorizontal_chainStyle="spread_inside"/>
 
     <Button
         android:layout_width="@dimen/size_scalable"
         android:layout_height="@dimen/height_create_challenge_b"
         android:id="@+id/createChallengeB"
+        android:text="@string/create"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
