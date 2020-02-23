@@ -14,4 +14,6 @@
     <string name="receiver">Receiver</string>
     <string name="perfom">Perfom</string>
     <string name="feed">Feed</string>
+    <string name="specifyDeadline">Specify deadline</string>
+    <string name="create">Create</string>
 </resources>

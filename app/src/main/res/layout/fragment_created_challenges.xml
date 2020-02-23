@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/DefaultFragment"
+    android:background="@android:color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.createdChallengesLibrary.CreatedChallengesFragment">
     
@@ -18,8 +19,10 @@
     <ImageButton
         android:layout_width="@dimen/width_create_new_challenge_b"
         android:layout_height="@dimen/height_create_new_challenge_b"
-        android:src="@color/colorAccent"
         android:id="@+id/createNewChallengeB"
+        android:background="@drawable/rounded_background"
+        android:backgroundTint="@color/green"
+        android:src="@drawable/ic_action_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
     
