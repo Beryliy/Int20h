@@ -15,11 +15,8 @@ class ContactsArrayAdapter(
 ): ArrayAdapter<User>(context, 0, contacts) {
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val contact = getItem(position)
-        val spinnerItem = if(convertView == null) {
-            LayoutInflater.from(context).inflate(R.layout.contact_item, parent, false)
-        } else {
-            convertView
-        }
+        val spinnerItem =
+            convertView ?: LayoutInflater.from(context).inflate(R.layout.contact_item, parent, false)
         spinnerItem.contactNameTv.text = contact!!.name
         return spinnerItem
     }

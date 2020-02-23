@@ -18,4 +18,10 @@ class User {
     override fun toString(): String {
         return "$name, $id"
     }
+
+    override fun equals(other: Any?): Boolean {
+        if(other !is User) return false
+        if(this.phoneNumber == other.phoneNumber) return true
+        return false
+    }
 }

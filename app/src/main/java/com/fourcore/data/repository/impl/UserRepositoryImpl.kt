@@ -28,7 +28,7 @@ class UserRepositoryImpl(private val firestore: FirebaseFirestore) : UserReposit
 
 
 
-    override suspend fun getAllUsers(): List<User> {
+    override suspend fun getAllUsers(): MutableList<User> {
         return firestore.collection("users").awaitWithId { snap, id ->
             val user: User = snap.toObject(User::class.java)!!
             user.id = id

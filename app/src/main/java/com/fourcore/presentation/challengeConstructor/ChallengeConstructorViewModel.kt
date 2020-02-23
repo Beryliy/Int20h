@@ -15,6 +15,7 @@ import com.fourcore.scheduled.DeadlineCheckerWorker
 import kotlinx.coroutines.launch
 import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.collections.ArrayList
 
 class ChallengeConstructorViewModel(
     val challengeRepository: ChallengeRepository,
@@ -67,6 +68,7 @@ class ChallengeConstructorViewModel(
     fun initContacts() {
         viewModelScope.launch {
             val contacts = userRepository.getAllUsers()
+            contacts.remove(userRepository.getCurrentUser())
             contactsInitedEvent.postValue(contacts)
         }
     }

@@ -55,9 +55,9 @@ class ChallengeConstructorFragment : NavFragment() {
         })
         viewModel.contactsInitedEvent.observe(viewLifecycleOwner, Observer {
             ContactsArrayAdapter(context!!, it)
-                .also {
-                    it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                    receiverSp.adapter = it
+                .also { it1 ->
+                    it1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                    receiverSp.adapter = it1
                 }
         })
         viewModel.workerRequestEvent.observe(viewLifecycleOwner, Observer {

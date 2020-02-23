@@ -12,11 +12,11 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
-suspend fun <T : Any> Query.awaitWithId(parser: (documentSnapshot: DocumentSnapshot, id: String) -> T): List<T> {
+suspend fun <T : Any> Query.awaitWithId(parser: (documentSnapshot: DocumentSnapshot, id: String) -> T): MutableList<T> {
     return suspendCancellableCoroutine { continuation ->
         get().addOnCompleteListener {
             if (it.isSuccessful && it.result != null) {
-                val list = it.result!!.documents.map { snap -> parser.invoke(snap, snap.id) }
+                val list = it.result!!.documents.map { snap -> parser.invoke(snap, snap.id) }.toMutableList()
                 continuation.resume(list)
             } else {
                 continuation.resumeWithException(it.exception ?: IllegalStateException())
