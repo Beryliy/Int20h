@@ -9,4 +9,5 @@ interface UserRepository {
     suspend fun getAllUsers(): List<User>
     suspend fun getUserById(id: String): User
     suspend fun getUserByPhone(phoneNumber: String): User
+    suspend fun updateUser(user: User)
 }
