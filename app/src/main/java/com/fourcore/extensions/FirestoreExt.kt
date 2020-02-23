@@ -1,5 +1,9 @@
 package com.fourcore.extensions
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.fourcore.domain.Challenge
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
@@ -43,5 +47,22 @@ suspend fun <T : Any> DocumentReference.awaitWithId(parser: (documentSnapshot: D
             }
         }
     }
+}
+
+fun Query.addChallengeSnapshotAddedListener(
+    parser: (documentSnapshot: DocumentSnapshot, id: String) -> Challenge
+): LiveData<List<Challenge>> {
+    val liveData = MutableLiveData<List<Challenge>>()
+    this.addSnapshotListener { snap, exc ->
+        if (exc != null) return@addSnapshotListener
+        val posts = ArrayList<Challenge>()
+        for (docChange in snap!!.documentChanges) {
+            if (docChange.type == DocumentChange.Type.ADDED) {
+                posts.add(parser.invoke(docChange.document, docChange.document.id))
+            }
+        }
+        liveData.postValue(posts)
+    }
+    return liveData
 }
 

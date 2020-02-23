@@ -69,6 +69,7 @@ buildscript {
                     "com.firebaseui:firebase-ui-auth:6.2.0",
                     "com.google.firebase:firebase-firestore-ktx:$firestore_ktx_version",
                     "com.github.brotoo25:firestore-coroutines:$firestore_coroutines_version",
+                    "com.google.firebase:firebase-storage:19.1.1",
 
 
                     //navigation

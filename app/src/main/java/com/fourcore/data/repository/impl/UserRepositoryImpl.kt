@@ -7,6 +7,7 @@ import com.fourcore.extensions.awaitWithId
 import com.google.firebase.firestore.FirebaseFirestore
 import com.kiwimob.firestore.coroutines.addAwait
 import com.kiwimob.firestore.coroutines.await
+import com.kiwimob.firestore.coroutines.updateAwait
 
 class UserRepositoryImpl(private val firestore: FirebaseFirestore) : UserRepository {
 
@@ -43,6 +44,12 @@ class UserRepositoryImpl(private val firestore: FirebaseFirestore) : UserReposit
             user.id = id
             user
         }
+    }
+
+    override suspend fun updateUser(user: User) {
+        firestore.collection("users").document(user.id!!).updateAwait(mapOf(
+            "points" to user.points
+        ))
     }
 
 
