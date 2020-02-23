@@ -19,9 +19,9 @@ class Challenge {
         name: String,
         description: String?,
         deadline: Date,
-        creationAward: Int,
-        completeAward: Int,
-        fine: Int,
+        creationAward: Int = 1,
+        completeAward: Int = 4,
+        fine: Int = 1,
         id: String? = null
     ) {
         this.owner = owner
