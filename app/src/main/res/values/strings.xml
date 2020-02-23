@@ -7,6 +7,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile">Profile</string>
+    <string name="created_challenges">Created</string>
     <string name="received_tasks">Received</string>
     <string name="my_tasks">Sent</string>
     <string name="score">Score</string>

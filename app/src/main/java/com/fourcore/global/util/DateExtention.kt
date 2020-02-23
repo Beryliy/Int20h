@@ -3,7 +3,7 @@ package com.fourcore.global.util
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun Calendar.getReadableDate(): String {
+fun Date.getReadableDate(): String {
     val sdf = SimpleDateFormat("dd.MM.yyyy HH:mm", Locale.ENGLISH)
-    return sdf.format(this.time)
+    return sdf.format(this)
 }

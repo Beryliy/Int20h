@@ -25,6 +25,9 @@
         android:title="@string/profile"
         />
 
-
+    <item
+        android:id="@id/createdChallengesFragment"
+        android:icon="@mipmap/ic_launcher"
+        android:title="@string/created_challenges" />
 
 </menu>

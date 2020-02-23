@@ -27,7 +27,7 @@ class ChallengeConstructorViewModel(
                     challengeReceiver,
                     presentationChallenge.name,
                     presentationChallenge.description,
-                    deadlineCalendar,
+                    deadlineCalendar.time,
                     1,
                     4,
                     1
