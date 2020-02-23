@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.DatePicker
 import androidx.lifecycle.Observer
+import androidx.work.WorkManager
 import com.fourcore.NavFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -47,6 +48,9 @@ class ChallengeConstructorFragment : NavFragment() {
                     it.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     receiverSp.adapter = it
                 }
+        })
+        viewModel.workerRequestEvent.observe(viewLifecycleOwner, Observer {
+            WorkManager.getInstance(context!!).enqueue(it)
         })
         receiverSp.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {}

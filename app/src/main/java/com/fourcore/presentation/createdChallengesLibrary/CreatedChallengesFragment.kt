@@ -36,6 +36,5 @@ class CreatedChallengesFragment : NavFragment() {
             val action = CreatedChallengesFragmentDirections.actionCreatedChallengesFragmentToChallengeConstructorFragment()
             findNavController().navigate(action)
         }
-        viewModel.
     }
 }
