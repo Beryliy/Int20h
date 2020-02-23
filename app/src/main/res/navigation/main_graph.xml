@@ -30,6 +30,10 @@
         android:name="com.fourcore.presentation.my_tasks.MyTasksFragment"
         android:label="MyTasksFragment" />
     <fragment
+        android:id="@+id/voteTasksFragment"
+        android:name="com.fourcore.presentation.vote_challenge.VoteTasksFragment"
+        android:label="VoteTasksFragment" />
+    <fragment
         android:id="@+id/receivedTasksFragment"
         android:name="com.fourcore.presentation.received_tasks.ReceivedTasksFragment"
         android:label="ReceivedTasksFragment" />
