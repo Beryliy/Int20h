@@ -7,6 +7,7 @@ import android.view.View.VISIBLE
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.fourcore.NavFragment
+import com.fourcore.ProgressDialogFragment
 import com.fourcore.R
 import com.fourcore.domain.ChallengePerform
 import com.fourcore.global.util.showShortToast
@@ -21,9 +22,14 @@ class VoteTasksFragment : NavFragment() {
 
     private val challengPerformList = Stack<ChallengePerform>()
     private var currentPerform: ChallengePerform? = null
+    private val loadingDialog = ProgressDialogFragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        voteRoot.visibility = INVISIBLE
+        viewModel.loadingLiveData.observe(viewLifecycleOwner, Observer {
+            if(it) loadingDialog.show(parentFragmentManager, "Sfasds") else loadingDialog.dismissAllowingStateLoss()
+        })
         viewModel.getVoteList().observe(viewLifecycleOwner, Observer {
             challengPerformList.clear()
             challengPerformList.addAll(it)

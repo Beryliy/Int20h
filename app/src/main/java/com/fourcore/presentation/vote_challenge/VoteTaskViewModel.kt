@@ -16,28 +16,36 @@ class VoteTaskViewModel(
 ) : ViewModel() {
 
     private val challengePerformLiveData = MutableLiveData<List<ChallengePerform>>()
+    val loadingLiveData = MutableLiveData<Boolean>()
 
-    fun getVoteList(): LiveData<List<ChallengePerform>>{
+    fun getVoteList(): LiveData<List<ChallengePerform>> {
         viewModelScope.launch {
-           val list = challengeRepository.getUnVotePerformChallenges(userRepository.getCurrentUser().id!!)
+            loadingLiveData.postValue(true)
+            val list = challengeRepository.getUnVotePerformChallenges(userRepository.getCurrentUser().id!!)
             challengePerformLiveData.postValue(list)
+            loadingLiveData.postValue(false)
+
         }
         return challengePerformLiveData
     }
 
     fun increaseVote(currentPerform: ChallengePerform) {
-        GlobalScope.launch {
+        viewModelScope.launch {
+            loadingLiveData.postValue(true)
             currentPerform.score++
             currentPerform.likeIds.add(userRepository.getCurrentUser().id!!)
             challengeRepository.updateChallengePerform(currentPerform)
+            loadingLiveData.postValue(false)
         }
     }
 
     fun decreaseVote(currentPerform: ChallengePerform) {
-        GlobalScope.launch {
+        viewModelScope.launch {
+            loadingLiveData.postValue(true)
             currentPerform.score--
             currentPerform.likeIds.add(userRepository.getCurrentUser().id!!)
             challengeRepository.updateChallengePerform(currentPerform)
+            loadingLiveData.postValue(false)
         }
     }
 }

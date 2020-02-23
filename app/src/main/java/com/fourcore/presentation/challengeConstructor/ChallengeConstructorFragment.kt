@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.work.WorkManager
 import com.fourcore.NavFragment
+import com.fourcore.ProgressDialogFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 import com.fourcore.R
@@ -31,9 +32,13 @@ class ChallengeConstructorFragment : NavFragment() {
     lateinit var deadline: Date
 
     override fun layoutId() = R.layout.fragment_challenge_constructor
+    private val loadingDialog = ProgressDialogFragment()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.loadingLiveData.observe(viewLifecycleOwner, Observer {
+            if(it)loadingDialog.show(parentFragmentManager, "Sfs") else loadingDialog.dismissAllowingStateLoss()
+        })
         createChallengeB.setOnClickListener{
             viewModel.presentationChallenge = PresentationChallenge(
                 challengeNameEt.text.toString(),
