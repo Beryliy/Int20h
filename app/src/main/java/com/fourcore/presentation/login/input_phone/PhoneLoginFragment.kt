@@ -65,6 +65,7 @@ class PhoneLoginFragment : NavFragment(), CoroutineScope {
                                 }
                             }
                             startActivity(Intent(requireContext(), MainActivity::class.java))
+                            requireActivity().finish()
                         }catch (e: IllegalStateException) {
                             navController.navigate(
                                 PhoneLoginFragmentDirections.actionInputPhoneFragmentToUserInfoFragment(
