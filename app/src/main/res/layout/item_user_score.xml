@@ -13,13 +13,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/ic_launcher_background"
-        android:src="@drawable/ic_launcher_foreground" />
+        android:src="@drawable/ic_sentiment_satisfied_alt_24px"
+        />
 
     <TextView
         android:id="@+id/scoreItemNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/grey"
         app:layout_constraintTop_toTopOf="@id/scoreItemImageView"
         app:layout_constraintBottom_toBottomOf="@id/scoreItemImageView"
         app:layout_constraintStart_toEndOf="@id/scoreItemImageView"
@@ -34,6 +35,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/colorAccent"
         android:text="234"
         android:textSize="21sp"
         android:layout_margin="12dp"

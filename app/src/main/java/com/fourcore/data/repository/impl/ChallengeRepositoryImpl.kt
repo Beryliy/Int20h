@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import com.fourcore.data.repository.ChallengeRepository
 import com.fourcore.domain.Challenge
 import com.fourcore.domain.ChallengePerform
+import com.fourcore.extensions.addChallengePerformSnapshotAddedListener
 import com.fourcore.extensions.addChallengeSnapshotAddedListener
 import com.fourcore.extensions.awaitSingleWithId
 import com.fourcore.extensions.awaitWithId
@@ -96,12 +97,12 @@ class ChallengeRepositoryImpl(
         firestore.collection("active_challenges").document(choosedChallenge.id!!).deleteAwait()
     }
 
-    override suspend fun getUnVotePerformChallenges(voteUserId: String): List<ChallengePerform> {
-        return firestore.collection("performing_challenges").awaitWithId {snap, id ->
+    override suspend fun getUnVotePerformChallenges(): LiveData<List<ChallengePerform>> {
+        return firestore.collection("performing_challenges").addChallengePerformSnapshotAddedListener {snap, id ->
             val challenge: ChallengePerform = snap.toObject(ChallengePerform::class.java)!!
             challenge.id = id
             challenge
-        }.filter { !it.likeIds.contains(voteUserId) }
+        }
     }
 
     override suspend fun updateChallengePerform(currentPerform: ChallengePerform) {

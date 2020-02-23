@@ -7,6 +7,7 @@
     android:backgroundTint="@android:color/white"
     android:elevation="@dimen/elevation_card"
     android:layout_width="match_parent"
+    android:layout_margin="3dp"
     android:layout_height="@dimen/height_challenge_background">
 
     <TextView
@@ -43,7 +44,8 @@
         android:gravity="end"
         android:textAppearance="@style/SecondatyText"
         app:layout_constraintStart_toEndOf="@id/challengeNameTv"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@id/challengeNameTv"
+        app:layout_constraintBottom_toBottomOf="@id/challengeNameTv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         android:layout_marginEnd="@dimen/margin_challenge_content"

@@ -27,9 +27,6 @@ class VoteTasksFragment : NavFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         voteRoot.visibility = INVISIBLE
-        viewModel.loadingLiveData.observe(viewLifecycleOwner, Observer {
-            if(it) loadingDialog.show(parentFragmentManager, "Sfasds") else loadingDialog.dismissAllowingStateLoss()
-        })
         viewModel.getVoteList().observe(viewLifecycleOwner, Observer {
             challengPerformList.clear()
             challengPerformList.addAll(it)

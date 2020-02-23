@@ -3,6 +3,7 @@ package com.fourcore.extensions
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.fourcore.domain.Challenge
+import com.fourcore.domain.ChallengePerform
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
@@ -65,4 +66,23 @@ fun Query.addChallengeSnapshotAddedListener(
     }
     return liveData
 }
+
+
+fun Query.addChallengePerformSnapshotAddedListener(
+    parser: (documentSnapshot: DocumentSnapshot, id: String) -> ChallengePerform
+): LiveData<List<ChallengePerform>> {
+    val liveData = MutableLiveData<List<ChallengePerform>>()
+    this.addSnapshotListener { snap, exc ->
+        if (exc != null) return@addSnapshotListener
+        val posts = ArrayList<ChallengePerform>()
+        for (docChange in snap!!.documentChanges) {
+            if (docChange.type == DocumentChange.Type.ADDED) {
+                posts.add(parser.invoke(docChange.document, docChange.document.id))
+            }
+        }
+        liveData.postValue(posts)
+    }
+    return liveData
+}
+
 
