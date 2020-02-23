@@ -37,7 +37,7 @@ suspend fun <T : Any> Query.awaitSingleWithId(parser: (documentSnapshot: Documen
     }
 }
 
-suspend fun <T : Any> DocumentReference.awaitWithId(parser: (documentSnapshot: DocumentSnapshot, id: String) -> T): T {
+suspend fun <T : Any> DocumentReference.awaitSingleWithId(parser: (documentSnapshot: DocumentSnapshot, id: String) -> T): T {
     return suspendCancellableCoroutine { continuation ->
         get().addOnCompleteListener {
             if (it.isSuccessful && it.result != null && it.result!!.exists()) {

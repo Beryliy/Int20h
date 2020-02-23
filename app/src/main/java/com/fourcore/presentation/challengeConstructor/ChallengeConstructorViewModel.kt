@@ -1,6 +1,7 @@
 package com.fourcore.presentation.challengeConstructor
 
 import androidx.lifecycle.viewModelScope
+import androidx.work.Data
 import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import com.fourcore.SingleLiveEvent
@@ -17,7 +18,7 @@ import java.util.concurrent.TimeUnit
 class ChallengeConstructorViewModel(
     val challengeRepository: ChallengeRepository,
     val userRepository: UserRepository
-): BaseViewModel() {
+) : BaseViewModel() {
     lateinit var presentationChallenge: PresentationChallenge
     lateinit var challengeReceiver: User
     val challengeNotValidEvent = SingleLiveEvent<String>()
@@ -37,13 +38,20 @@ class ChallengeConstructorViewModel(
                     4,
                     1
                 )
-                challengeRepository.createChallenge(challenge)
-                userRepository.updateUser(userRepository.getCurrentUser().apply { points++ })
+                userRepository.getCurrentUser().apply { ++points }
+                userRepository.updateUser(userRepository.getCurrentUser())
+                val challengeId: String = challengeRepository.createChallenge(challenge)
+                val data = Data.Builder()
+                data.putString(DeadlineCheckerWorker.CHALLENGE_ID_KEY, challengeId)
                 val deadlineWorkRequest = OneTimeWorkRequestBuilder<DeadlineCheckerWorker>()
-                    .setInitialDelay(deadlineCalendar.timeInMillis - Date().time, TimeUnit.MILLISECONDS)
+                    .setInitialDelay(
+                        deadlineCalendar.timeInMillis - Date().time,
+                        TimeUnit.MILLISECONDS
+                    )
+                    .setInputData(data.build())
+                    .addTag(DeadlineCheckerWorker::class.java.simpleName)
                     .build()
                 workerRequestEvent.postValue(deadlineWorkRequest)
-
             } else {
                 challengeNotValidEvent.postValue("")
             }
@@ -69,7 +77,7 @@ class ChallengeConstructorViewModel(
     }
 
     private fun validateChallange(presentationChallenge: PresentationChallenge): Boolean {
-        if(presentationChallenge.name.isBlank()) {
+        if (presentationChallenge.name.isBlank()) {
             return false
         }
         return true

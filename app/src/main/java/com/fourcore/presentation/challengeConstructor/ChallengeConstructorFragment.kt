@@ -3,6 +3,7 @@ package com.fourcore.presentation.challengeConstructor
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -18,6 +19,7 @@ import com.fourcore.R
 import com.fourcore.domain.User
 import com.fourcore.global.util.showShortToast
 import kotlinx.android.synthetic.main.fragment_challenge_constructor.*
+import org.koin.android.ext.android.get
 import java.util.*
 
 /**
@@ -50,7 +52,7 @@ class ChallengeConstructorFragment : NavFragment() {
                 }
         })
         viewModel.workerRequestEvent.observe(viewLifecycleOwner, Observer {
-            WorkManager.getInstance(context!!).enqueue(it)
+            WorkManager.getInstance(get()).enqueue(it)
         })
         receiverSp.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {}
