@@ -14,4 +14,6 @@ interface ChallengeRepository {
     suspend fun sendChallengePerorming(challenge: ChallengePerform)
     suspend fun uploadImage(bitmap: Bitmap): String
     suspend fun deleteFromActive(choosedChallenge: Challenge)
+    suspend fun getUnVotePerformChallenges(voteUserId: String): List<ChallengePerform>
+    suspend fun updateChallengePerform(currentPerform: ChallengePerform)
 }

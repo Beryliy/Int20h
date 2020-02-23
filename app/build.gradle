@@ -41,7 +41,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt librariesKapt
     debugImplementation librariesDebug
-
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
     testImplementation testLibraries
     androidTestImplementation androidTestLibraries
 }
