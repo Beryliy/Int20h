@@ -13,4 +13,6 @@
 
     <!--challenges list-->
     <dimen name="height_date_time_picker_b">36dp</dimen>
+    <dimen name="height_challenge_background">96dp</dimen>
+    <dimen name="radius_challenge_item_corner">42dp</dimen>
 </resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:radius="@dimen/radius_challenge_item_corner">
+    <corners
+        android:radius="@dimen/radius_challenge_item_corner"/>
+    <gradient
+        android:angle="135"
+        android:startColor="@color/transparent"
+        android:endColor="@android:color/black"/>
+</shape>

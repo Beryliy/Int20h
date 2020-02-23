@@ -1,14 +1,18 @@
 package com.fourcore.presentation.challengeConstructor
 
 import androidx.lifecycle.viewModelScope
+import androidx.work.OneTimeWorkRequest
+import androidx.work.OneTimeWorkRequestBuilder
 import com.fourcore.SingleLiveEvent
 import com.fourcore.data.repository.ChallengeRepository
 import com.fourcore.data.repository.UserRepository
 import com.fourcore.domain.Challenge
 import com.fourcore.domain.User
 import com.fourcore.presentation.BaseViewModel
+import com.fourcore.scheduled.DeadlineCheckerWorker
 import kotlinx.coroutines.launch
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class ChallengeConstructorViewModel(
     val challengeRepository: ChallengeRepository,
@@ -19,6 +23,7 @@ class ChallengeConstructorViewModel(
     val challengeNotValidEvent = SingleLiveEvent<String>()
     val contactsInitedEvent = SingleLiveEvent<List<User>>()
     val deadlineCalendar = Calendar.getInstance()
+    val workerRequestEvent = SingleLiveEvent<OneTimeWorkRequest>()
     fun createChallenge() {
         viewModelScope.launch {
             if (validateChallange(presentationChallenge)) {
@@ -33,6 +38,11 @@ class ChallengeConstructorViewModel(
                     1
                 )
                 challengeRepository.createChallenge(challenge)
+                val deadlineWorkRequest = OneTimeWorkRequestBuilder<DeadlineCheckerWorker>()
+                    .setInitialDelay(deadlineCalendar.timeInMillis - Date().time, TimeUnit.MILLISECONDS)
+                    .build()
+                workerRequestEvent.postValue(deadlineWorkRequest)
+
             } else {
                 challengeNotValidEvent.postValue("")
             }
