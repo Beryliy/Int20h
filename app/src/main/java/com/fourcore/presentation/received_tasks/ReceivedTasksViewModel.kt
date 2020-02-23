@@ -1,13 +1,14 @@
 package com.fourcore.presentation.received_tasks
 
+import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fourcore.data.repository.ChallengeRepository
 import com.fourcore.data.repository.UserRepository
 import com.fourcore.domain.Challenge
+import com.fourcore.domain.ChallengePerform
 import kotlinx.coroutines.launch
 
 class ReceivedTasksViewModel(
@@ -27,8 +28,15 @@ class ReceivedTasksViewModel(
         return challangesLiveData
     }
 
-    fun performTask(task: Challenge) {
-
+    fun createChallengePerform(choosedChallenge: Challenge, photo: Bitmap) {
+        viewModelScope.launch {
+            val photoUri = challengeRepository.uploadImage(photo)
+            challengeRepository.deleteFromActive(choosedChallenge)
+            val challengePerform = ChallengePerform(
+                choosedChallenge,
+                photoUri
+            )
+            challengeRepository.sendChallengePerorming(challengePerform)
+        }
     }
-
 }

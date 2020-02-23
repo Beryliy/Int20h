@@ -42,4 +42,11 @@ class ReceivedTasksAdapter(
         data.addAll(0, challenges)
         notifyItemRangeInserted(0, challenges.size)
     }
+
+    fun removeItem(choosedChallenge: Challenge) {
+        val removedIndex = data.indexOfFirst { it.id == choosedChallenge.id }
+        if(removedIndex == -1) return
+        data.removeAt(removedIndex)
+        notifyItemRemoved(removedIndex)
+    }
 }

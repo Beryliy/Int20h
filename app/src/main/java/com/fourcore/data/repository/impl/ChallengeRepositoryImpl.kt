@@ -1,17 +1,26 @@
 package com.fourcore.data.repository.impl
 
+import android.graphics.Bitmap
 import androidx.lifecycle.LiveData
 import com.fourcore.data.repository.ChallengeRepository
 import com.fourcore.domain.Challenge
+import com.fourcore.domain.ChallengePerform
 import com.fourcore.extensions.addChallengeSnapshotAddedListener
 import com.fourcore.extensions.awaitWithId
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.kiwimob.firestore.coroutines.addAwait
 import com.kiwimob.firestore.coroutines.deleteAwait
+import kotlinx.coroutines.suspendCancellableCoroutine
+import java.io.ByteArrayOutputStream
+import java.lang.IllegalStateException
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
 class ChallengeRepositoryImpl(
-    private val firestore: FirebaseFirestore
+    private val firestore: FirebaseFirestore,
+    private val storage: FirebaseStorage
 ) : ChallengeRepository {
     override suspend fun createChallenge(challenge: Challenge) {
         firestore.collection("active_challenges").addAwait(challenge)
@@ -50,4 +59,38 @@ class ChallengeRepositoryImpl(
                 challenge
             }
     }
+
+    override suspend fun sendChallengePerorming(challenge: ChallengePerform) {
+        firestore.collection("performing_challenges").addAwait(challenge)
+    }
+
+    override suspend fun uploadImage(bitmap: Bitmap): String {
+        return suspendCancellableCoroutine { cont ->
+            val storageRef = storage.reference
+            val imageRef = storageRef.child("tasks/${System.currentTimeMillis()}_photo.jpg")
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            val data = baos.toByteArray()
+            val uploadTask = imageRef.putBytes(data)
+            uploadTask.continueWithTask {task ->
+                if (!task.isSuccessful) {
+                    task.exception?.let {
+                        cont.resumeWithException(IllegalStateException())
+                    }
+                }
+                imageRef.downloadUrl
+            }.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    cont.resume(task.result.toString())
+                } else {
+                    cont.resumeWithException(IllegalStateException())
+                }
+            }
+        }
+    }
+
+    override suspend fun deleteFromActive(choosedChallenge: Challenge) {
+        firestore.collection("active_challenges").document(choosedChallenge.id!!).deleteAwait()
+    }
+
 }
